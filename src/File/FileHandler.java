@@ -1,6 +1,7 @@
 package File;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 
@@ -30,4 +31,21 @@ public class FileHandler {
     }
 
 
+    public static String writeFile(String fileName, String content) {
+        if (!fileName.endsWith(".json")) {
+            fileName += ".json";
+        }
+
+        String path = "src/" + fileName;
+
+        try{
+            FileWriter fileWriter = new FileWriter(path);
+            fileWriter.write(content);
+            fileWriter.close();
+            return "Json writen successfully in "+fileName;
+
+        }catch (IOException e){
+           return "An error occured in INput and output file creation";
+        }
+    }
 }
